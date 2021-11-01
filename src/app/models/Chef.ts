@@ -1,7 +1,7 @@
 export interface Chef {
     id : number,
     username : string,
-    passkey : string,
+    password : string,
     firstName : string,
     lastName : string, 
     email : string

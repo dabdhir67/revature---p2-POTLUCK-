@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
 import { Chef } from '../models/Chef';
 import { SignupService } from '../services/signup.service';
 
@@ -12,22 +11,33 @@ export class SignupComponent implements OnInit {
 
   constructor(private signupService: SignupService) { }
 
-  private chef: Chef = {
-    id: 0,
-    username: 'user',
-    passkey: 'pass',
-    firstName: 'one',
-    lastName: 'first',
-    email: 'email@email.com'
-  }
+  username: string = '';
+  password: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
 
   ngOnInit(): void {
   }
 
-  buildAndAddChef() {
-    this.signupService.addChef().toPromise()
-      .then(response => console.log(response))
-      .catch(() => alert("Duplicate Username!"));
+  buildChef() {
+
   }
+
+  // addChef() {
+  //   this.signupService.addChef(this.chef).toPromise()
+  //     .then(response => function() {
+  //       if (response.status == 400) {
+  //         console.log(response);
+  //       }
+  //     })
+  //     .catch(response => {
+  //       if (response.status == 400) {
+  //         alert("Must fill all fields!");
+  //       } else if (response.status == 500) {
+  //         alert("Duplicate Username!");
+  //       }
+  //     });
+  // }
 
 }

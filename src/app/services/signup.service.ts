@@ -13,6 +13,7 @@ export class SignupService {
   constructor(private httpClient: HttpClient) { }
 
   addChef(chef: Chef): Observable<HttpResponse<Chef>> {
+    console.log(chef);
     return this.httpClient.post<Chef>(this.url, chef, {observe : 'response'});
   }
 }
