@@ -1,9 +1,9 @@
 <form id="edit-recipe-form" onclick="editRecipe()">
     <div id="recipe-title">
-        <input type="text" value="{{recipeTitle}}" [(ngModel)]="recipeTitle" required>
+        <input type="text" value="{{recipeTitle}}" required>
     </div>
     <div id="recipe-body">
-        <textarea [(ngModel)]="recipeBody" rows="10" cols="50">{{recipeBody}}</textarea>
+        <textarea rows="10" cols="50">{{recipeBody}}</textarea>
     </div>
     <div id="btn">
         <button type="submit" form="edit-recipe-form" value="Submit">Submit</button>
