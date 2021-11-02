@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Chef } from '../models/Chef';
 import { SignupService } from '../services/signup.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -20,24 +20,28 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  buildChef() {
-
+  addChef() {
+    const chef = {
+      username : this.username,
+      password : this.password,
+      firstName : this.firstName,
+      lastName : this.lastName,
+      email : this.email
+    }
+    this.signupService.addChef(chef).toPromise()
+      .then(response => {
+        if (response.status === 201) {
+          const token = response.headers.get('Authorization');
+          if (token) sessionStorage.setItem('token', token);
+        }
+      })
+      .catch(response => {
+        if (response.status === 400) {
+          alert('All fields must be filled!');
+        } else if (response.status === 500) {
+          alert('Duplicate Key!')
+        }
+      });
   }
-
-  // addChef() {
-  //   this.signupService.addChef(this.chef).toPromise()
-  //     .then(response => function() {
-  //       if (response.status == 400) {
-  //         console.log(response);
-  //       }
-  //     })
-  //     .catch(response => {
-  //       if (response.status == 400) {
-  //         alert("Must fill all fields!");
-  //       } else if (response.status == 500) {
-  //         alert("Duplicate Username!");
-  //       }
-  //     });
-  // }
 
 }
