@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './SignupView/signup/signup.component';
 import { SignupService } from './services/signup.service';
 
 @NgModule({

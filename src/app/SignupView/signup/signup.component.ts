@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupService } from '../services/signup.service';
-import { HttpResponse } from '@angular/common/http';
+import { SignupService } from '../../services/signup.service';
 
 @Component({
   selector: 'app-signup',
