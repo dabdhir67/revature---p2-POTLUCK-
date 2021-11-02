@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupService } from '../../services/signup.service';
+import { ChefService } from '../../services/chef.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +8,7 @@ import { SignupService } from '../../services/signup.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private signupService: SignupService) { }
+  constructor(private chefService: ChefService) { }
 
   username: string = '';
   password: string = '';
@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit {
       lastName : this.lastName,
       email : this.email
     }
-    this.signupService.addChef(chef).toPromise()
+    this.chefService.addChef(chef).toPromise()
       .then(response => {
         if (response.status === 201) {
           const token = response.headers.get('Authorization');
