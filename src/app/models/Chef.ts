@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-export class Chef {
-
-    constructor(){
-        
-    }
-=======
 export interface SendChef {
     username : string,
     password : string,
@@ -18,5 +11,5 @@ export interface Chef {
     firstName : string, 
     lastName : string,
     email : string
->>>>>>> origin/main
+
 }
