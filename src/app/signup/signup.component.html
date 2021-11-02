@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-body">
+        <label for="username">Username: </label>
+        <input type="text" id="username" [(ngModel)]="username">
+        
+        <label for="password">Password: </label>
+        <input type="password" id="password" [(ngModel)]="password">
+        
+        <label for="firstName">First Name: </label>
+        <input type="text" id="firstName" [(ngModel)]="firstName">
+        
+        <label for="lastName">Last Name: </label>
+        <input type="text" id="lastName" [(ngModel)]="lastName">
+        
+        <label for="email">Email: </label>
+        <input type="text" id="email" [(ngModel)]="email">
+        
+        <input type="button" id="signup-btn" class="btn btn-dark" value="Sign Up" (click)="addChef()">
+    </div>
+    <div>
+        {{username}}
+        {{password}}
+        {{firstName}}
+        {{lastName}}
+        {{email}}
+    </div>
+</div>
