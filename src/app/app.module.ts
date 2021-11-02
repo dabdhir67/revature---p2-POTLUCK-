@@ -1,26 +1,30 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
-import { HttpClientModule } from '@angular/common/http';
 import { RecipeService } from './services/recipe.service';
-import { FormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
+import { SignupService } from './services/signup.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddRecipeComponent
+    AddRecipeComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule,
     FormsModule
   ],
-  providers: [RecipeService],
+  providers: [RecipeService, SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
