@@ -11,6 +11,10 @@ export class AddRecipeComponent implements OnInit {
 
   constructor(public recipeService: RecipeService) { }
 
+  @Input()
+  recipe!: Recipe;
+
+
   title: string = "";
   body: string = "";
 
@@ -19,14 +23,11 @@ export class AddRecipeComponent implements OnInit {
 
 
   addRecipe(){
-    // console.log(`adding recipe: ${this.title}, ${this.body}}`);
-    // const recipe = {
-    //   title: this.title,
-    //   body: this.body,
-    //   date: timeStamp.valueOf("2020-10-29 07:58:00"),
-    //   chef: null
-    // }
-    // this.recipeService.addRecipe(recipe)
+      console.log(`adding recipe: ${this.title}, ${this.body}}`);
+  
+      this.recipe.title = this.title;
+      this.recipe.body = this.body;
+      this.recipeService.addRecipe(this.recipe);  
   }
 
 }
