@@ -1,0 +1,16 @@
+<h1>Add Your Recipe!</h1>
+<div class="card">
+    <div class="card-body">
+        <label for="title">Recipe Title: </label>
+        <input type="text" id="title" [(ngModel)]="title">
+        
+        <label for="body">Instructions: </label>
+        <input type="text" id="body" [(ngModel)]="body">
+        
+        <input type="button" id="add-recipe-btn" class="btn btn-dark" value="Add Recipe" (click)="addRecipe()">
+    </div>
+    <div>
+        {{title}}
+        {{body}}
+    </div>
+</div>

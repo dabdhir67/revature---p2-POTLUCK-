@@ -6,22 +6,28 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SignupComponent } from './signup/signup.component';
-import { SignupService } from './services/signup.service';
+import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
+import { RecipeService } from './services/recipe.service';
+// import { SignupService } from './services/signup.service';
+import { SignupComponent } from './SignupView/signup/signup.component';
+import { ChefService } from './services/chef.service';
+import { LoginComponent } from './LoginView/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent
+    AddRecipeComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
-  providers: [SignupService],
+  providers: [ChefService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

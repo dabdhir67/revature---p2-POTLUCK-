@@ -1,12 +1,12 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http'
-import { SendChef, Chef } from '../models/Chef';
 import { Observable } from 'rxjs';
+import { Chef, SendChef } from '../models/Chef';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SignupService {
+export class ChefService {
 
   private url = "http://localhost:8080/BackEnd/chef";
 
