@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/Recipe';
-import { RecipeDataService } from 'src/app/services/recipe-data.service';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-recipe-delete',
@@ -16,7 +16,7 @@ export class RecipeDeleteComponent implements OnInit {
     this.recipeService.deleteRecipe(this.recipe);
   }
 
-  constructor(private recipeService: RecipeDataService) { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
   }

@@ -8,12 +8,21 @@ import { Recipe } from '../models/Recipe';
 })
 export class RecipeService {
 
-  
+  private DATA_URL: string = "http://localhost:8080/BackEnd/recipe";
+
+  public editRecipe(recipe:Recipe) {
+    this.http.put(this.DATA_URL, recipe);
+  }
+
+  deleteRecipe(recipe:Recipe) {
+    this.http.delete(this.DATA_URL, recipe);
+  }
+
   addRecipe(recipe: Recipe) {
     throw new Error('Method not implemented.');
   }
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
   
   // addRecipe(recipe:Recipe): Observable<Recipe[]>{
 
