@@ -8,14 +8,20 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 import { RecipeService } from './services/recipe.service';
+import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
+import { RecipeDeleteComponent } from './components/recipe-delete/recipe-delete.component';
+
 // import { SignupService } from './services/signup.service';
 import { SignupComponent } from './SignupView/signup/signup.component';
 import { ChefService } from './services/chef.service';
 import { LoginComponent } from './LoginView/login/login.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    RecipeEditComponent,
+    RecipeDeleteComponent,
     AddRecipeComponent,
     SignupComponent,
     LoginComponent
