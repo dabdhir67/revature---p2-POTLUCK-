@@ -1,0 +1,16 @@
+<div class="card">
+    <div id="title-div">
+        <label for="title.id">Title</label>
+        <br>
+        <input id="title.id" type="text" [value]=recipe.title [(ngModel)]="title">
+    </div>
+    <div id="body-div">
+        <label for="body.id">Body</label>
+        <br>
+        <textarea id="body.id" rows="10" cols="100" [value]=recipe.body [(ngModel)]="body"></textarea>
+    </div>
+    <div id="btn-div">
+        <button class="button" (click)="editRecipe()">Submit</button>
+    </div>
+</div>
+

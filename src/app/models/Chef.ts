@@ -11,9 +11,5 @@ export interface Chef {
     firstName : string, 
     lastName : string,
     email : string
-<<<<<<< HEAD
 
 }
-=======
-}
->>>>>>> origin/main

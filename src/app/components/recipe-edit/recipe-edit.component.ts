@@ -12,8 +12,13 @@ export class RecipeEditComponent implements OnInit {
   @Input()
   recipe!: Recipe;
 
+  title: string = "";
+  body: string = "";
+
   editRecipe() {
-      this.recipeService.editRecipe(this.recipe);
+    this.recipe.title = this.title;
+    this.recipe.body = this.body;
+    this.recipeService.editRecipe(this.recipe);
   }
 
   constructor(private recipeService: RecipeDataService) { }
