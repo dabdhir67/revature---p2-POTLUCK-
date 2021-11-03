@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/Recipe';
@@ -14,7 +14,7 @@ export class RecipeDataService {
     //update the Recipe in database
   }
 
-  public deleteRecipe(recipe:Recipe){
+  deleteRecipe(recipe:Recipe) {
     this.http.delete(this.DATA_URL, recipe);
   }
 

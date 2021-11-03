@@ -1,11 +1,18 @@
-<form id="edit-recipe-form" onclick="editRecipe()">
-    <div id="recipe-title">
-        <input type="text" value="{{recipeTitle}}" required>
-    </div>
-    <div id="recipe-body">
-        <textarea rows="10" cols="50">{{recipeBody}}</textarea>
-    </div>
-    <div id="btn">
-        <button type="submit" form="edit-recipe-form" value="Submit">Submit</button>
-    </div>
-</form>
+<div class="card">
+    <form id="edit-recipe-form">
+        <div id="title-div">
+            <label for="title">Title</label>
+            <br>
+            <input id="title" type="text">
+        </div>
+        <div id="body-div">
+            <label for="body">Body</label>
+            <br>
+            <textarea id="body" rows="10" cols="100"></textarea>
+        </div>
+        <div id="btn-div">
+            <button class="button" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
