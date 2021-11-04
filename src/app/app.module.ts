@@ -12,13 +12,17 @@ import { RecipeService } from './services/recipe.service';
 import { SignupComponent } from './SignupView/signup/signup.component';
 import { ChefService } from './services/chef.service';
 import { LoginComponent } from './LoginView/login/login.component';
+import { AllRecipesComponent } from './components/all-recipes/all-recipes.component';
+import { AllRecipesByChefComponent } from './components/all-recipes-by-chef/all-recipes-by-chef.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddRecipeComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    AllRecipesComponent,
+    AllRecipesByChefComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,8 @@ import { LoginComponent } from './LoginView/login/login.component';
     NgbModule,
     FormsModule
   ],
-  providers: [ChefService],
+ providers: [ChefService,RecipeService],
+ // providers: [ChefService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

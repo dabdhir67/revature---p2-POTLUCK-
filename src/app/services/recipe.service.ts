@@ -8,6 +8,18 @@ import { Recipe } from '../models/Recipe';
 })
 export class RecipeService {
 
+  readonly APIUrl ="http://localhost:8089/";   // This will change
+
+ /************************** Recipe  ***********************************/ 
+ getRecipeList():Observable<any[]>{
+  return this.httpClient.get<any>(this.APIUrl+'/Recipe');
+  }
+
+  
+  getRecipeListByChef():Observable<any[]>{
+    return this.httpClient.get<any>(this.APIUrl+'/Recipe/Chef');
+  }
+
   
   addRecipe(recipe: Recipe) {
     throw new Error('Method not implemented.');
