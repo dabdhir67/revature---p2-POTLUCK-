@@ -14,6 +14,8 @@ import { RecipeDeleteComponent } from './KitchenView/recipe-delete/recipe-delete
 import { SignupComponent } from './SignupView/signup/signup.component';
 import { ChefService } from './services/chef.service';
 import { LoginComponent } from './LoginView/login/login.component';
+import { KitchenComponent } from './KitchenView/kitchen/kitchen.component';
+import { MarketComponent } from './MarketView/market/market.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { LoginComponent } from './LoginView/login/login.component';
     RecipeDeleteComponent,
     AddRecipeComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    KitchenComponent,
+    MarketComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddRecipeComponent } from './KitchenView/add-recipe/add-recipe.component';
+import { KitchenComponent } from './KitchenView/kitchen/kitchen.component';
+import { LoginComponent } from './LoginView/login/login.component';
+import { MarketComponent } from './MarketView/market/market.component';
+import { SignupComponent } from './SignupView/signup/signup.component';
 
 const routes: Routes = [
-  {path: 'add-recipe', component: AddRecipeComponent},
-  {path: '', redirectTo: '/add-recipe', pathMatch:'full'}
+  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'kitchen', component: KitchenComponent },
+  { path: 'market', component: MarketComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
