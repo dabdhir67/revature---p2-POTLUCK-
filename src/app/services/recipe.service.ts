@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+=======
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+>>>>>>> origin/main
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/Recipe';
@@ -8,24 +12,46 @@ import { Recipe } from '../models/Recipe';
 })
 export class RecipeService {
 
-  private DATA_URL: string = "http://localhost:8080/BackEnd/recipe";
+  constructor(private httpClient: HttpClient) { }
 
-  public editRecipe(recipe:Recipe) {
-    this.http.put(this.DATA_URL, recipe);
+  private URL: string = "http://localhost:8080/BackEnd/recipe";
+
+  editRecipe(recipe:Recipe) {
+    this.httpClient.put(this.URL, recipe, { headers: {"Authorization" : `${sessionStorage.getItem('token')}`}});
   }
 
-  public deleteRecipe(recipe:Recipe) {
-    const headers = new HttpHeaders();
-    headers.set();
-    return this.http.delete(this.DATA_URL, recipe);
+  deleteRecipe(recipe: Recipe) {
+    console.log(recipe);
+    const options = {
+      headers: new HttpHeaders({
+        "Authorization" : `${sessionStorage.getItem('token')}`
+      }),
+      body: recipe,
+      responseType:'text' as 'json'
+    };
+    return this.httpClient.delete(this.URL, options);
   }
 
-  addRecipe(recipe: Recipe) {
-    throw new Error('Method not implemented.');
+  addRecipe(title: string, body: string): Observable<Recipe>{
+    return this.httpClient.post<Recipe>(this.URL, null, { headers: {
+      "Authorization" : `${sessionStorage.getItem('token')}`,
+      "title" : `${title}`,
+      "body" : `${body}`
+    }});
   }
 
-  constructor(private http: HttpClient) { }
-  
-  // addRecipe(recipe:Recipe): Observable<Recipe[]>{
+  getAllRecipes(){
+    return this.httpClient.get<Recipe[]>(this.URL, { headers: {
+      "Authorization" : `${sessionStorage.getItem('token')}`,
+      "getAll" : "true"}
+    });
+  }
 
+    
+  getChefRecipeList(): Observable<Recipe[]>{
+    return this.httpClient.get<Recipe[]>(this.URL, { headers: {
+      "Authorization" : `${sessionStorage.getItem('token')}`,
+      "getAll" : "false"}
+    });
+  }
 }

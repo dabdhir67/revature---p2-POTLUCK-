@@ -32,6 +32,7 @@ export class SignupComponent implements OnInit {
         if (response.status === 201) {
           const token = response.headers.get('Authorization');
           if (token) sessionStorage.setItem('token', token);
+          window.location.href = '/kitchen';
         }
       })
       .catch(response => {

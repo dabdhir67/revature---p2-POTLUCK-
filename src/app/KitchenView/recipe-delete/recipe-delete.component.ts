@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/models/Recipe';
 import { SendChef } from 'src/app/models/Chef';
 import { RecipeService } from 'src/app/services/recipe.service';
@@ -10,20 +10,16 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class RecipeDeleteComponent implements OnInit {
 
-  @Input()
-  //recipe!: Recipe;
+  @Input() recipe!: Recipe;
 
-  date: Date = new Date(2021, 11, 5);
-  chef: SendChef = {username: "user1", password: "password", firstName: "One", lastName: "First", email: "Email1"};
-  recipe: Recipe = new Recipe(1,"Recipe1","Test1", this.date, this.chef);
+  @Output() delete: EventEmitter<Recipe> = new EventEmitter();
 
   deleteRecipe(){
     this.recipeService.deleteRecipe(this.recipe).subscribe(
-      result=>{
-        console.log(result)
-      }
-    );
-    console.log("Delete?");
+      (s) => {
+        console.log(s);
+      });
+      this.delete.emit(this.recipe);
   }
 
   constructor(private recipeService: RecipeService) { }

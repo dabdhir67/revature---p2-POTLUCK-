@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/models/Recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
@@ -9,11 +9,9 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class AddRecipeComponent implements OnInit {
 
-  constructor(public recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService) { }
 
-  @Input()
-  recipe!: Recipe;
-
+  @Output() recipeEmit: EventEmitter<Recipe> = new EventEmitter<Recipe>();
 
   title: string = "";
   body: string = "";
@@ -21,13 +19,9 @@ export class AddRecipeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   addRecipe(){
-      console.log(`adding recipe: ${this.title}, ${this.body}}`);
-  
-      this.recipe.title = this.title;
-      this.recipe.body = this.body;
-      this.recipeService.addRecipe(this.recipe);  
+    this.recipeService.addRecipe(this.title, this.body).subscribe(
+      result => this.recipeEmit.emit(result)
+    );
   }
-
 }

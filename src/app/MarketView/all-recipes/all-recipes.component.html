@@ -1,0 +1,25 @@
+<p>all-recipes works!</p>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</head>
+<table class="table table-striped">
+    <thead>
+       <tr>
+           <th>Title</th>
+           <th>Body</th>
+           <th>Date</th>
+           <th>Chef</th>
+       </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of RecipeList">
+             <td>{{dataItem.Title}}</td>
+             <td>{{dataItem.Body}}</td> 
+             <td>{{dataItem.Date}}</td>
+             <td>{{dataItem.Chef}}</td>  
+        </tr>
+        
+    </tbody>
+
+</table> 
