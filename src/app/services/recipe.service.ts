@@ -8,7 +8,12 @@ import { Recipe } from '../models/Recipe';
 })
 export class RecipeService {
 
-  private DATA_URL: string = "http://localhost:8080/BackEnd/recipe";
+//  readonly APIUrl ="http://localhost:8089/";   // This will change
+
+ /************************** Recipe  ***********************************/ 
+ constructor(private http: HttpClient) { }
+  
+  private DATA_URL: string = "http://localhost:8089/BackEnd/recipe";
 
   public editRecipe(recipe:Recipe) {
     this.http.put(this.DATA_URL, recipe);
@@ -18,12 +23,25 @@ export class RecipeService {
     this.http.delete(this.DATA_URL, recipe);
   }
 
-  addRecipe(recipe: Recipe) {
-    throw new Error('Method not implemented.');
+  addRecipe(recipe: Recipe):Observable<Recipe>
+  {
+    return this.http.post<Recipe>(this.DATA_URL, recipe, {'headers': {'content-type' : 'application/json'}});
   }
 
-  constructor(private http: HttpClient) { }
+
+  getRecipeList(){
+    return this.http.get(this.DATA_URL);
+    }
   
-  // addRecipe(recipe:Recipe): Observable<Recipe[]>{
+    
+    getRecipeListByChef(id: number){
+    //   return this.http.get(this.DATA_URL+"/${id}");
+      const url = `${this.DATA_URL}/${id}`;
+      return this.http.get("${this.http://localhost:8089/BackEnd/recipe}/${id}");
+    }
+
+
+   //   return this.http.get<Hero>(url).pipe(
+     // tap(_ => this.log(`fetched hero id=${id}`))
 
 }

@@ -16,6 +16,8 @@ import { ChefService } from './services/chef.service';
 import { LoginComponent } from './LoginView/login/login.component';
 import { KitchenComponent } from './KitchenView/kitchen/kitchen.component';
 import { MarketComponent } from './MarketView/market/market.component';
+import { AllRecipesComponent } from './KitchenView/all-recipes/all-recipes.component';
+import { AllRecipesByChefComponent } from './KitchenView/all-recipes-by-chef/all-recipes-by-chef.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { MarketComponent } from './MarketView/market/market.component';
     SignupComponent,
     LoginComponent,
     KitchenComponent,
-    MarketComponent
+    MarketComponent,
+    AllRecipesComponent,
+    AllRecipesByChefComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,8 @@ import { MarketComponent } from './MarketView/market/market.component';
     NgbModule,
     FormsModule
   ],
-  providers: [ChefService],
+ providers: [ChefService,RecipeService],
+ // providers: [ChefService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
