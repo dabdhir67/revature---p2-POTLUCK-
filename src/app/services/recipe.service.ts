@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/Recipe';
@@ -14,8 +14,10 @@ export class RecipeService {
     this.http.put(this.DATA_URL, recipe);
   }
 
-  deleteRecipe(recipe:Recipe) {
-    this.http.delete(this.DATA_URL, recipe);
+  public deleteRecipe(recipe:Recipe) {
+    const headers = new HttpHeaders();
+    headers.set();
+    return this.http.delete(this.DATA_URL, recipe);
   }
 
   addRecipe(recipe: Recipe) {
