@@ -16,7 +16,7 @@ export class ChefService {
     return this.httpClient.post<Chef>(this.url, chef, {observe : 'response', headers: {'password': chef.password}});
   }
 
-  login(chef: SendChef): Observable<HttpResponse<Chef>> {
-    return this.httpClient.get<Chef>(this.url+`/${chef.username}`, {observe : 'response', headers: {'password': chef.password}});
+  login(username: string, password: string): Observable<HttpResponse<Chef>> {
+    return this.httpClient.get<Chef>(this.url+`/${username}`, {observe : 'response', headers: {'password': password}});
   }
 }

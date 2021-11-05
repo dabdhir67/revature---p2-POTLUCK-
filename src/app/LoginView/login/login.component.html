@@ -8,7 +8,7 @@
         <label for="password">Password: </label>
         <input type="password" id="password" [(ngModel)]="password">
 
-        <input type="button" id="signup-btn" class="btn btn-dark" value="Login">
+        <input type="button" id="signup-btn" class="btn btn-dark" value="Login" (click)="login()">
 
         <div>
             <h4>Don't have an account? <a href="/signup">Signup!</a></h4>

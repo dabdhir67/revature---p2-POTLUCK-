@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Recipe } from 'src/app/models/Recipe';
 import { RecipeService} from 'src/app/services/recipe.service';
 
 @Component({
@@ -8,17 +9,15 @@ import { RecipeService} from 'src/app/services/recipe.service';
 })
 export class AllRecipesByChefComponent implements OnInit {
 
-  constructor(private service:RecipeService) { }
+  constructor(private recipeService:RecipeService) { }
 
-  RecipeListByChef:any=[];
+  recipeList: Recipe[] = [];
 
   ngOnInit(): void {
-    this.RecipeListByChef();
-  }
-
-  RefreshRecipeListByChef(){
-    
-      this.service.getRecipeListByChef().subscribe(data=>{this.RecipeListByChef=data});
+    this.recipeService.getChefRecipeList().subscribe(
+      result => { 
+        this.recipeList = result
+    });
   }
 
 

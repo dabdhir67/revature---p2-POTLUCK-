@@ -18,7 +18,7 @@ export class AllRecipesComponent implements OnInit {
   }
 
   refreshRecipeList(){
-     this.service.getRecipeList().subscribe(data=>{this.RecipeList=data;});
+     this.service.getAllRecipes().subscribe(data=>{this.RecipeList=data;});
   }
 
 }

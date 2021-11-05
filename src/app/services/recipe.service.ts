@@ -8,40 +8,38 @@ import { Recipe } from '../models/Recipe';
 })
 export class RecipeService {
 
-//  readonly APIUrl ="http://localhost:8089/";   // This will change
+  constructor(private httpClient: HttpClient) { }
 
- /************************** Recipe  ***********************************/ 
- constructor(private http: HttpClient) { }
-  
-  private DATA_URL: string = "http://localhost:8089/BackEnd/recipe";
+  private URL: string = "http://localhost:8080/BackEnd/recipe";
 
-  public editRecipe(recipe:Recipe) {
-    this.http.put(this.DATA_URL, recipe);
+  editRecipe(recipe:Recipe) {
+    this.httpClient.put(this.URL, recipe, { headers: {"Authorization" : `${sessionStorage.getItem('token')}`}});
   }
 
   deleteRecipe(recipe:Recipe) {
-    this.http.delete(this.DATA_URL, recipe);
+    this.httpClient.delete(this.URL, recipe);
   }
 
-  addRecipe(recipe: Recipe):Observable<Recipe>
-  {
-    return this.http.post<Recipe>(this.DATA_URL, recipe, {'headers': {'content-type' : 'application/json'}});
+  addRecipe(title: string, body: string): Observable<Recipe>{
+    return this.httpClient.post<Recipe>(this.URL, null, { headers: {
+      "Authorization" : `${sessionStorage.getItem('token')}`,
+      "title" : `${title}`,
+      "body" : `${body}`
+    }});
   }
 
+  getAllRecipes(){
+    return this.httpClient.get<Recipe[]>(this.URL, { headers: {
+      "Authorization" : `${sessionStorage.getItem('token')}`,
+      "getAll" : "true"}
+    });
+  }
 
-  getRecipeList(){
-    return this.http.get(this.DATA_URL);
-    }
-  
     
-    getRecipeListByChef(id: number){
-    //   return this.http.get(this.DATA_URL+"/${id}");
-      const url = `${this.DATA_URL}/${id}`;
-      return this.http.get("${this.http://localhost:8089/BackEnd/recipe}/${id}");
-    }
-
-
-   //   return this.http.get<Hero>(url).pipe(
-     // tap(_ => this.log(`fetched hero id=${id}`))
-
+  getChefRecipeList(): Observable<Recipe[]>{
+    return this.httpClient.get<Recipe[]>(this.URL, { headers: {
+      "Authorization" : `${sessionStorage.getItem('token')}`,
+      "getAll" : "false"}
+    });
+  }
 }
