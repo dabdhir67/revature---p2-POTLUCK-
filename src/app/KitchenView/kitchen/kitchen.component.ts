@@ -13,7 +13,13 @@ export class KitchenComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  recipe: Recipe = {
+    title: '',
+    body: '',
+    date: ''
+  };
+
   addItem(recipe: Recipe) {
-    console.log(recipe);
+    this.recipe = recipe;
   }
 }

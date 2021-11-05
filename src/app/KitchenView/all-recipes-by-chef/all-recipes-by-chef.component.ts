@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Recipe } from 'src/app/models/Recipe';
 import { RecipeService} from 'src/app/services/recipe.service';
 
@@ -12,6 +12,7 @@ export class AllRecipesByChefComponent implements OnInit {
   constructor(private recipeService:RecipeService) { }
 
   recipeList: Recipe[] = [];
+  @Input() newRecipe?: Recipe;
 
   ngOnInit(): void {
     this.recipeService.getChefRecipeList().subscribe(
@@ -20,6 +21,7 @@ export class AllRecipesByChefComponent implements OnInit {
     });
   }
 
-
-
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.newRecipe) this.recipeList.push(this.newRecipe);
+  }
 }
