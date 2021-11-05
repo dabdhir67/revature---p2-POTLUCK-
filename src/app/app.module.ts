@@ -6,18 +6,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
+import { AddRecipeComponent } from './KitchenView/add-recipe/add-recipe.component';
 import { RecipeService } from './services/recipe.service';
-// import { SignupService } from './services/signup.service';
+import { RecipeEditComponent } from './KitchenView/recipe-edit/recipe-edit.component';
+import { RecipeDeleteComponent } from './KitchenView/recipe-delete/recipe-delete.component';
+
 import { SignupComponent } from './SignupView/signup/signup.component';
 import { ChefService } from './services/chef.service';
 import { LoginComponent } from './LoginView/login/login.component';
 import { AllRecipesComponent } from './components/all-recipes/all-recipes.component';
 import { AllRecipesByChefComponent } from './components/all-recipes-by-chef/all-recipes-by-chef.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    RecipeEditComponent,
+    RecipeDeleteComponent,
     AddRecipeComponent,
     SignupComponent,
     LoginComponent,
