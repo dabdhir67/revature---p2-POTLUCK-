@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Chef } from 'src/app/models/Chef';
 import { Recipe } from 'src/app/models/Recipe';
+import { ChefService } from 'src/app/services/chef.service';
 
 @Component({
   selector: 'app-kitchen',
@@ -14,9 +16,16 @@ export class KitchenComponent implements OnInit {
   }
 
   recipe: Recipe = {
+    id: 0,
     title: '',
     body: '',
-    date: ''
+    date: '',
+    chef: {
+      username: '',
+      firstName: '',
+      lastName: '',
+      email: ''
+    }
   };
 
   addItem(recipe: Recipe) {

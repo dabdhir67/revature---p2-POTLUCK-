@@ -9,11 +9,14 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class RecipeDeleteComponent implements OnInit {
 
-  @Input()
-  recipe!: Recipe;
+  @Input() recipe!: Recipe;
 
   deleteRecipe(){
-    this.recipeService.deleteRecipe(this.recipe);
+    console.log(this.recipe);
+    this.recipeService.deleteRecipe(this.recipe).subscribe(
+      (s) => {
+        console.log(s);
+      });
   }
 
   constructor(private recipeService: RecipeService) { }

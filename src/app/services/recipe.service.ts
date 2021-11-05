@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/Recipe';
@@ -16,8 +16,16 @@ export class RecipeService {
     this.httpClient.put(this.URL, recipe, { headers: {"Authorization" : `${sessionStorage.getItem('token')}`}});
   }
 
-  deleteRecipe(recipe:Recipe) {
-    this.httpClient.delete(this.URL, recipe);
+  deleteRecipe(recipe: Recipe) {
+    console.log(recipe);
+    const options = {
+      headers: new HttpHeaders({
+        "Authorization" : `${sessionStorage.getItem('token')}`
+      }),
+      body: recipe,
+      responseType:'text' as 'json'
+    };
+    return this.httpClient.delete(this.URL, options);
   }
 
   addRecipe(title: string, body: string): Observable<Recipe>{

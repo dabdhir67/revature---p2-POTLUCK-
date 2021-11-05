@@ -4,6 +4,7 @@
            <th>Name</th>
            <th>Description</th>
            <th>Date</th>
+           <th></th>
        </tr>
     </thead>
     <tbody>
@@ -11,6 +12,7 @@
              <td>{{recipe.title}}</td>
              <td>{{recipe.body}}</td> 
              <td>{{recipe.date}}</td>
+             <td><app-recipe-delete [recipe]="recipe"></app-recipe-delete></td>
         </tr>
     </tbody>
 
