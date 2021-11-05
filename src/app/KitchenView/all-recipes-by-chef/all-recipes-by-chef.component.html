@@ -12,7 +12,7 @@
              <td>{{recipe.title}}</td>
              <td>{{recipe.body}}</td> 
              <td>{{recipe.date}}</td>
-             <td><app-recipe-delete [recipe]="recipe"></app-recipe-delete></td>
+             <td><app-recipe-delete [recipe]="recipe" (delete)="deleteRecipe($event)"></app-recipe-delete></td>
         </tr>
     </tbody>
 

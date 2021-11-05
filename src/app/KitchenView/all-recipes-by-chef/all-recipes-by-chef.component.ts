@@ -21,6 +21,12 @@ export class AllRecipesByChefComponent implements OnInit {
     });
   }
 
+  deleteRecipe(recipe: Recipe): void {
+    this.recipeList.forEach((element,index)=>{
+      if(element==recipe) this.recipeList.splice(index,1);
+   });
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (this.newRecipe) this.recipeList.push(this.newRecipe);
   }
