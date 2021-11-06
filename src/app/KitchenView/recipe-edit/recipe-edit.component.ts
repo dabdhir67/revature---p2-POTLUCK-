@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Recipe } from 'src/app/models/Recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { convertCompilerOptionsFromJson } from 'typescript';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -10,19 +11,34 @@ import { RecipeService } from 'src/app/services/recipe.service';
 export class RecipeEditComponent implements OnInit {
 
   @Input()
-  recipe!: Recipe;
+  updateRecipe!: Recipe;
+  @Input()
+  show: Boolean = false;
+
+  @Output() toggle: EventEmitter<Boolean> = new EventEmitter();
 
   title: string = "";
   body: string = "";
 
   editRecipe() {
-    this.recipe.title = this.title;
-    this.recipe.body = this.body;
-    this.recipeService.editRecipe(this.recipe);
+    this.updateRecipe.title = this.title;
+    this.updateRecipe.body = this.body;
+    this.recipeService.editRecipe(this.updateRecipe).subscribe((r) => console.log(r));
+    this.show = false;
+    this.toggle.emit(this.show);
+  }
+
+  cancelEdit(){
+    this.show = false;
+    this.toggle.emit(this.show);
   }
 
   constructor(private recipeService: RecipeService) { }
 
-  ngOnInit(): void { }
+  ngOnInit() {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.title=this.updateRecipe.title;
+    this.body=this.updateRecipe.body;
+  }
 }

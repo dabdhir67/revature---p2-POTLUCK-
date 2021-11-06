@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, OnInit, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/models/Recipe';
 import { RecipeService} from 'src/app/services/recipe.service';
 
@@ -14,11 +14,19 @@ export class AllRecipesByChefComponent implements OnInit {
   recipeList: Recipe[] = [];
   @Input() newRecipe?: Recipe;
 
+  @Output() edit: EventEmitter<Recipe> = new EventEmitter();
+  @Output() show: EventEmitter<Boolean> = new EventEmitter();
+
   ngOnInit(): void {
     this.recipeService.getChefRecipeList().subscribe(
       result => { 
         this.recipeList = result
     });
+  }
+
+  openEdit(recipe: Recipe) {
+    this.edit.emit(recipe);
+    this.show.emit(true);
   }
 
   deleteRecipe(recipe: Recipe): void {

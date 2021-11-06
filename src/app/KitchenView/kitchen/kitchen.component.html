@@ -1,3 +1,3 @@
 <app-add-recipe (recipeEmit)="addItem($event)"></app-add-recipe>
-<app-all-recipes-by-chef [newRecipe]="recipe"></app-all-recipes-by-chef>
-<!--<app-recipe-edit></app-recipe-edit>-->
+<app-recipe-edit [updateRecipe]="recipeForUpdate" [show]="show" (toggle)="toggle($event)"></app-recipe-edit>
+<app-all-recipes-by-chef [newRecipe]="recipe" (edit)="editRecipe($event)" (show)="toggle($event)"></app-all-recipes-by-chef>

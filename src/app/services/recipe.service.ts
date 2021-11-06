@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-=======
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
->>>>>>> origin/main
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/Recipe';
@@ -17,11 +13,13 @@ export class RecipeService {
   private URL: string = "http://localhost:8080/BackEnd/recipe";
 
   editRecipe(recipe:Recipe) {
-    this.httpClient.put(this.URL, recipe, { headers: {"Authorization" : `${sessionStorage.getItem('token')}`}});
+    return this.httpClient.put(this.URL, recipe, { 
+      headers: {"Authorization" : `${sessionStorage.getItem('token')}`},  
+      responseType:'text' as 'json'
+    });
   }
 
   deleteRecipe(recipe: Recipe) {
-    console.log(recipe);
     const options = {
       headers: new HttpHeaders({
         "Authorization" : `${sessionStorage.getItem('token')}`

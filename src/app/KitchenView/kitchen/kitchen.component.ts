@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chef } from 'src/app/models/Chef';
 import { Recipe } from 'src/app/models/Recipe';
-import { ChefService } from 'src/app/services/chef.service';
 
 @Component({
   selector: 'app-kitchen',
@@ -27,6 +25,29 @@ export class KitchenComponent implements OnInit {
       email: ''
     }
   };
+
+  recipeForUpdate: Recipe = {
+    id: 0,
+    title: '',
+    body: '',
+    date: '',
+    chef: {
+      username: '',
+      firstName: '',
+      lastName: '',
+      email: ''
+    }
+  };
+
+  show: Boolean = false;
+
+  editRecipe(recipe: Recipe) {
+    this.recipeForUpdate=recipe;
+  }
+
+  toggle(b: Boolean) {
+    this.show=b;
+  }
 
   addItem(recipe: Recipe) {
     this.recipe = recipe;

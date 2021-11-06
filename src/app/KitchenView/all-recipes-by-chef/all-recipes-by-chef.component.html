@@ -5,15 +5,16 @@
            <th>Description</th>
            <th>Date</th>
            <th></th>
+           <th></th>
        </tr>
     </thead>
     <tbody>
         <tr *ngFor="let recipe of recipeList">
              <td>{{recipe.title}}</td>
-             <td>{{recipe.body}}</td> 
+             <td>{{recipe.body}}</td>
              <td>{{recipe.date}}</td>
+             <td><button type="button" class="btn btn-dark" (click)="openEdit(recipe)">Edit</button></td>
              <td><app-recipe-delete [recipe]="recipe" (delete)="deleteRecipe($event)"></app-recipe-delete></td>
         </tr>
     </tbody>
-
 </table> 
