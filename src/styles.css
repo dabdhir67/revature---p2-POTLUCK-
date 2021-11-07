@@ -6,3 +6,24 @@
 .alert-imp {
     border-color: #a20021;
 }
+
+a {
+    color: black;
+}
+
+.recipe-tab {
+    font-size: larger;
+    text-overflow: ellipsis;
+}
+
+.recipe-body {
+    font-size: larger;
+    font-family: 'Red Rose', cursive;
+    padding-left: 1em;
+    overflow-y: scroll;
+    text-overflow: break-word;
+}
+
+.active, .focus {
+    background-color: #a20021;
+}
