@@ -15,8 +15,18 @@ export class SignupComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   email: string = '';
+  errText: string = 'An unknown error has occured.';
+  badRequest: boolean = false;
 
   ngOnInit(): void {
+  }
+
+  clearForm() {
+    this.username = '';
+    this.password = '';
+    this.firstName = '';
+    this.lastName = '';
+    this.email = '';
   }
 
   addChef() {
@@ -27,21 +37,31 @@ export class SignupComponent implements OnInit {
       lastName : this.lastName,
       email : this.email
     }
-    this.chefService.addChef(chef).toPromise()
-      .then(response => {
+    this.chefService.addChef(chef).subscribe(
+      response => {
         if (response.status === 201) {
           const token = response.headers.get('Authorization');
           if (token) sessionStorage.setItem('token', token);
+          this.clearForm();
           window.location.href = '/kitchen';
         }
-      })
-      .catch(response => {
-        if (response.status === 400) {
-          alert('All fields must be filled!');
-        } else if (response.status === 500) {
-          alert('Duplicate Key!')
+      },
+      err => {
+        if (err.status === 500) {
+          this.errText = 'Username is already taken!';
+          this.badRequest = true;
+          document.getElementById('err-div')!.style.display = "block";
+          this.username = '';
+        } else if (err.status === 400) {
+          this.errText = 'All fields must be filled in!';
+          this.badRequest = true;
+          document.getElementById('err-div')!.style.display = "block";
+        }else {
+          this.clearForm();
+          document.getElementById('err-div')!.style.display = "block";
         }
-      });
+      }
+    );
   }
 
 }

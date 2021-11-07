@@ -1,3 +1,21 @@
-<app-add-recipe (recipeEmit)="addItem($event)"></app-add-recipe>
-<app-all-recipes-by-chef [newRecipe]="recipe"></app-all-recipes-by-chef>
-<!--<app-recipe-edit></app-recipe-edit>-->
+<section class="min-vh-100 peppy-background">
+    <div class="wrapper">
+    <nav id="navbar" class="navbar flex-column align-items-stretch p-3">
+        <a class="navbar-brand" href="#">
+          <img src="assets/logo.png" width="100" height="60" alt="">
+        </a>
+        <nav class="nav nav-pills flex-column">
+            <a class="nav-link" href="#view">This is a test!</a>
+        </nav>
+    </nav>
+
+    <div data-bs-spy="scroll" data-bs-target="navbar" data-bs-offset="0" tabindex="0">
+        <div class="container">
+            <app-all-recipes-by-chef id="view" [newRecipe]="recipe"></app-all-recipes-by-chef>
+        </div>
+        <div>
+            <app-add-recipe id="add" (recipeEmit)="addItem($event)"></app-add-recipe>
+        </div>
+    </div>
+    </div>
+</section>

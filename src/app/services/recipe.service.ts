@@ -10,7 +10,7 @@ export class RecipeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private URL: string = "http://localhost:8080/BackEnd/recipe";
+  private URL: string = "http://ec2-3-140-238-125.us-east-2.compute.amazonaws.com:8090/Potluck/recipe";
 
   editRecipe(recipe:Recipe) {
     this.httpClient.put(this.URL, recipe, { headers: {"Authorization" : `${sessionStorage.getItem('token')}`}});
