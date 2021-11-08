@@ -20,8 +20,19 @@ export class AddRecipeComponent implements OnInit {
   }
 
   addRecipe(){
-    this.recipeService.addRecipe(this.title, this.body).subscribe(
-      result => this.recipeEmit.emit(result)
-    );
+    if (this.title != '' || this.body != '') {
+      this.recipeService.addRecipe(this.title, this.body).subscribe(
+        result => this.recipeEmit.emit(result)
+      );
+      this.title = '';
+      this.body = '';
+    } else {
+      if (this.title.length == 0) {
+        document.getElementById('title')?.classList.add('is-invalid');
+      }
+      if (this.body.length == 0) {
+        document.getElementById('body')?.classList.add('is-invalid');
+      }
+    }
   }
 }

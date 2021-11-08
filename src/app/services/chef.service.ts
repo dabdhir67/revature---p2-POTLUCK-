@@ -8,7 +8,7 @@ import { Chef, SendChef } from '../models/Chef';
 })
 export class ChefService {
 
-  private url = "http://localhost:8080/BackEnd/chef";
+  private url = "http://ec2-3-140-238-125.us-east-2.compute.amazonaws.com:8090/Potluck/chef";
 
   constructor(private httpClient: HttpClient) { }
 

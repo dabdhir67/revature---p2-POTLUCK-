@@ -15,8 +15,10 @@ export class RecipeDeleteComponent implements OnInit {
   @Output() delete: EventEmitter<Recipe> = new EventEmitter();
 
   deleteRecipe(){
-    this.recipeService.deleteRecipe(this.recipe).subscribe((r) => console.log);
-    this.delete.emit(this.recipe);
+    this.recipeService.deleteRecipe(this.recipe).subscribe(
+      result => {
+        this.delete.emit(this.recipe);
+      });
   }
 
   constructor(private recipeService: RecipeService) { }

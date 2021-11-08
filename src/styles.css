@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+a {
+    color: black;
+}
+
+input, textarea {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.lilita {
+    font-family: 'Lilita One', cursive;
+}
+
+.peppy-background {
+    background-color: #ffe8d1;
+}
+
+.alert-imp {
+    border-color: #a20021;
+}
+
+.recipe-tab {
+    font-size: larger;
+    text-overflow: ellipsis;
+}
+
+.recipe-body {
+    font-size: larger;
+    font-family: 'Red Rose', cursive;
+    padding-left: 1em;
+    max-height: 375px;
+    overflow-y: scroll;
+    text-overflow: break-word;
+    white-space: pre-wrap;
+}
+
+.recipe-card-title {
+    background-color: #FF94A9;
+}
+
+.recipe-card-body {
+    background-color: white;
+    padding-left: 1em;
+    max-height: 18rem;
+    overflow-y: scroll;
+    text-overflow: break-word;
+    white-space: pre-wrap;
+}
+
+.active, .focus {
+    background-color: #a20021;
+}
+
+.market-background {
+    background-color: #c96204;
+}
