@@ -13,6 +13,7 @@ export class AllRecipesByChefComponent implements OnInit {
 
   recipeList: Recipe[] = [];
   selected: Recipe | undefined;
+  editRecipe: Recipe | undefined;
   @Input() newRecipe?: Recipe;
 
   ngOnInit(): void {
@@ -28,6 +29,22 @@ export class AllRecipesByChefComponent implements OnInit {
       if(element==recipe) this.recipeList.splice(index,1);
    });
    this.selected = this.recipeList[0];
+  }
+
+  rearrange(recipe: Recipe) {
+    const i = this.recipeList.indexOf(recipe);
+    this.recipeList.splice(i, 1);
+    this.editRecipe = recipe;
+  }
+
+  saveEdit() {
+    console.log(this.editRecipe);
+    if (this.editRecipe && this.editRecipe.title != '' && this.editRecipe.body != '') {
+      this.recipeService.editRecipe(this.editRecipe);
+      this.recipeList.push(this.editRecipe);
+      this.selected = this.editRecipe;
+      this.editRecipe = undefined;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

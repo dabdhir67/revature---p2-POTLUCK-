@@ -13,11 +13,10 @@ export class RecipeService {
   private URL: string = "http://ec2-3-140-238-125.us-east-2.compute.amazonaws.com:8090/Potluck/recipe";
 
   editRecipe(recipe:Recipe) {
-    this.httpClient.put(this.URL, recipe, { headers: {"Authorization" : `${sessionStorage.getItem('token')}`}});
+    this.httpClient.put<Recipe>(this.URL, recipe, { headers: {"Authorization" : `${sessionStorage.getItem('token')}`}});
   }
 
   deleteRecipe(recipe: Recipe) {
-    console.log(recipe);
     const options = {
       headers: new HttpHeaders({
         "Authorization" : `${sessionStorage.getItem('token')}`
@@ -29,10 +28,9 @@ export class RecipeService {
   }
 
   addRecipe(title: string, body: string): Observable<Recipe>{
-    return this.httpClient.post<Recipe>(this.URL, null, { headers: {
+    return this.httpClient.post<Recipe>(this.URL, body, { headers: {
       "Authorization" : `${sessionStorage.getItem('token')}`,
-      "title" : `${title}`,
-      "body" : `${body}`
+      "title" : `${title}`
     }});
   }
 

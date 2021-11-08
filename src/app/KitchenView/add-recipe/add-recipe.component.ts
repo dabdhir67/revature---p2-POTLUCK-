@@ -20,7 +20,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   addRecipe(){
-    if (this.title.length > 0 || this.body.length > 0) {
+    if (this.title != '' || this.body != '') {
       this.recipeService.addRecipe(this.title, this.body).subscribe(
         result => this.recipeEmit.emit(result)
       );

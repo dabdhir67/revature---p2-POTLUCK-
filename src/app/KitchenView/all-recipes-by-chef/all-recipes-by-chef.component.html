@@ -4,24 +4,43 @@
 </div>
 
 <!-- Recipe Card View -->
-<ul *ngIf="recipeList" class="nav nav-tabs" id="myTab" role="tablist" style="overflow-y: scroll; max-height: 10em;">
-    <li class="nav-item border border-dark" role="presentation" *ngFor="let recipe of recipeList">
-        <button class="nav-link" id="${recipe.id}-tab" [class.active]="selected===recipe" (click)="selected=recipe"
-            data-bs-toggle="tab" data-bs-target="#${recipe.id}" type="button" role="tab" aria-controls="${recipe.id}" aria-selected="true">
-            <span class="recipe-tab">{{recipe.title}}</span>
-        </button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade" id="${recipe.id}" role="tabpanel" aria-labelledby="${recipe.id}-tab"
-    *ngFor="let recipe of recipeList" [ngClass]="{'show active' : selected===recipe}">
-        <div class="container-fluid p-3 border border-dark bg-light w-100" style="height: 25em;">
-            <p class="recipe-body">{{recipe.body}}</p>
-            <p class="float-right"><app-recipe-delete [recipe]="recipe" (delete)="deleteRecipe($event)"></app-recipe-delete></p>
+<div *ngIf="editRecipe === undefined">
+    <ul *ngIf="recipeList" class="nav nav-tabs" id="myTab" role="tablist" style="overflow-y: scroll; max-height: 10em;">
+        <li class="nav-item border border-dark" role="presentation" *ngFor="let recipe of recipeList">
+            <button class="nav-link" id="${recipe.id}-tab" [class.active]="selected===recipe" (click)="selected=recipe"
+                data-bs-toggle="tab" type="button" role="tab" aria-controls="${recipe.id}" aria-selected="true">
+                <span class="recipe-tab">{{recipe.title}}</span>
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade" id="${recipe.id}" role="tabpanel" aria-labelledby="${recipe.id}-tab"
+            *ngFor="let recipe of recipeList" [ngClass]="{'show active' : selected===recipe}">
+            <div class="container-fluid p-3 border border-dark bg-light" style="height: 25em;">
+            <p class="recipe-body mb-2">{{recipe.body}}</p>
+        </div>
+        <p class="float-right mx-2"><button class="btn btn-dark mx-2" (click)="rearrange(recipe)"> Edit </button>
+            <app-recipe-delete [recipe]="recipe" (delete)="deleteRecipe($event)"></app-recipe-delete></p>
         </div>
     </div>
 </div>
 
+<!-- Recipe Card Edit -->
+<div *ngIf="editRecipe !== undefined">
+<div class="nav nav-tabs" style="overflow-y: scroll; max-height: 10em;">
+    <div class="nav-item border border-dark">
+        <input type="text" [(ngModel)]="editRecipe.title">
+    </div>
+</div>
+<div class="tab-content">
+    <div class="tab-pane fade show active">
+        <div class="container-fluid p-3 border border-dark bg-light" style="height: 25em;">
+        <textarea class="form-control mb-2 h-100" [(ngModel)]="editRecipe.body"></textarea>
+    </div>
+    <p class="float-right mx-2"><button class="btn btn-dark mx-2" (click)="saveEdit()"> Save </button></p>
+    </div>
+</div>
+</div>
 
 <!-- <table class="table table-hover" style="empty-cells: show;">
     <thead>
