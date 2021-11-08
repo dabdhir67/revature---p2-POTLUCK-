@@ -15,9 +15,9 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade" id="${recipe.id}" role="tabpanel" aria-labelledby="${recipe.id}-tab"
     *ngFor="let recipe of recipeList" [ngClass]="{'show active' : selected===recipe}">
-        <div class="container-fluid p-3 border border-dark bg-light" style="width: 100%; height: 25em;">
+        <div class="container-fluid p-3 border border-dark bg-light w-100" style="height: 25em;">
             <p class="recipe-body">{{recipe.body}}</p>
-            <p><app-recipe-delete [recipe]="recipe" (delete)="deleteRecipe($event)"></app-recipe-delete></p>
+            <p class="float-right"><app-recipe-delete [recipe]="recipe" (delete)="deleteRecipe($event)"></app-recipe-delete></p>
         </div>
     </div>
 </div>

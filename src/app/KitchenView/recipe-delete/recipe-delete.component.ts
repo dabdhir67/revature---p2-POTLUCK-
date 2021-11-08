@@ -15,10 +15,10 @@ export class RecipeDeleteComponent implements OnInit {
 
   deleteRecipe(){
     this.recipeService.deleteRecipe(this.recipe).subscribe(
-      (s) => {
-        console.log(s);
+      result => {
+        console.log(result);
+        this.delete.emit(this.recipe);
       });
-      this.delete.emit(this.recipe);
   }
 
   constructor(private recipeService: RecipeService) { }

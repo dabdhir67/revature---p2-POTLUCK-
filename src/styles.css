@@ -1,14 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+a {
+    color: black;
+}
+
+input {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.lilita {
+    font-family: 'Lilita One', cursive;
+}
+
 .peppy-background {
     background-color: #ffe8d1;
 }
 
 .alert-imp {
     border-color: #a20021;
-}
-
-a {
-    color: black;
 }
 
 .recipe-tab {
