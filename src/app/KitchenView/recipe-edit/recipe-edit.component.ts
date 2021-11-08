@@ -23,7 +23,7 @@ export class RecipeEditComponent implements OnInit {
   editRecipe() {
     this.updateRecipe.title = this.title;
     this.updateRecipe.body = this.body;
-    this.recipeService.editRecipe(this.updateRecipe).subscribe((r) => console.log(r));
+    this.recipeService.editRecipe(this.updateRecipe);
     this.show = false;
     this.toggle.emit(this.show);
   }
