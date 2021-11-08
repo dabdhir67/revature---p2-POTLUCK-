@@ -1,0 +1,81 @@
+#!groovy
+
+import hudson.tasks.junit.TestResultSummary
+
+pipeline {
+    agent any
+    options {
+        buildDiscarder(logRotator(daysToKeepStr: '7', numToKeepStr: '1'))
+	    disableConcurrentBuilds()
+        ansiColor('xterm')
+    }
+    tools {
+        maven 'mvn'
+    }
+    stages {
+        stage('clean') {
+            when {
+                branch 'main'
+            }
+            steps {
+                slackSend message: ":sponge: cleaning ${env.GIT_BRANCH} branch..."
+                sh 'mvn clean'
+            }
+        }
+        stage('test') {
+            when {
+                branch 'main'
+            }
+            steps {
+                slackSend message: ":pencil: testing ${env.GIT_BRANCH} branch..."
+                sh 'mvn test'
+            }
+        }
+        stage('build') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh 'mvn -DskipTests package'
+                
+            }
+        }
+        stage('deploy') {
+            when { 
+                branch 'main'
+            }
+            steps {
+                script {
+                    fileOperations([fileCopyOperation(
+                        includes: 'target/*.war',
+                        flattenFiles: true,
+                        targetLocation: '/usr/share/tomcat/webapps'
+                    )])
+                    sh 'ls /usr/share/tomcat/webapps/'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            junit testResults: '**/target/surefire-reports/*.xml', skipPublishingChecks: true
+        }
+        success {
+            script {
+                statusComment = "[${env.JOB_NAME}] <${env.BUILD_URL}|#${env.BUILD_NUMBER}> completed succesfully on ${env.GIT_BRANCH} branch :mechanical_arm:"
+                slackSend color: "good", message: statusComment
+            }
+        }
+        failure {
+            script {
+                def summary = junit testResults: '**/target/surefire-reports/*.xml'
+                statusComment = "*[${env.JOB_NAME}] <${env.BUILD_URL}|#${env.BUILD_NUMBER}>* failed to build on ${env.GIT_BRANCH} branch."
+                statusComment += "\nRan ${summary.getTotalCount()} total tests."
+                statusComment += "\n\tFailed ${summary.getFailCount()}, Passed ${summary.getPassCount()}, Skipped ${summary.getSkipCount()}"
+                statusComment += "\nSeems you still have a ways to go hm? :face_with_monocle:"
+                slackSend color : "danger", message: statusComment
+            }
+        }
+    }
+}
+
