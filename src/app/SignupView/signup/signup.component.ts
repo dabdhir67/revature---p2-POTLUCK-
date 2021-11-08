@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmailValidator } from '@angular/forms';
 import { ChefService } from '../../services/chef.service';
 
 @Component({
@@ -16,7 +17,6 @@ export class SignupComponent implements OnInit {
   lastName: string = '';
   email: string = '';
   errText: string = 'An unknown error has occured.';
-  badRequest: boolean = false;
 
   ngOnInit(): void {
   }
@@ -29,7 +29,38 @@ export class SignupComponent implements OnInit {
     this.email = '';
   }
 
+  invalidFields(): boolean {
+    let pattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    if (this.username === '') {
+      document.getElementById('username')?.classList.add('is-invalid');
+    }
+    if (this.password === '') {
+      document.getElementById('password')?.classList.add('is-invalid');
+    }
+    if (this.firstName === '') {
+      document.getElementById('firstName')?.classList.add('is-invalid');
+    }
+    if (this.lastName === '') {
+      document.getElementById('lastName')?.classList.add('is-invalid');
+    }
+    if (this.email === '') {
+      document.getElementById('email')?.classList.add('is-invalid');
+    }
+    if (!pattern.test(this.email)) {
+      document.getElementById('email')?.classList.add('is-invalid');
+    }
+    if (this.username === '' || this.password === '' || this.firstName === '' ||
+        this.lastName === '' || this.email === '' || !pattern.test(this.email)) {
+      this.errText = 'All Fields must be filled in!';
+      if (!pattern.test(this.email)) this.errText += "\nPlease enter a valid email!";
+      document.getElementById('err-div')!.style.display = "block";
+      return true;
+    }
+    return false;
+  }
+
   addChef() {
+    if (this.invalidFields()) return;
     const chef = {
       username : this.username,
       password : this.password,
@@ -49,12 +80,10 @@ export class SignupComponent implements OnInit {
       err => {
         if (err.status === 500) {
           this.errText = 'Username is already taken!';
-          this.badRequest = true;
           document.getElementById('err-div')!.style.display = "block";
           this.username = '';
         } else if (err.status === 400) {
           this.errText = 'All fields must be filled in!';
-          this.badRequest = true;
           document.getElementById('err-div')!.style.display = "block";
         }else {
           this.clearForm();

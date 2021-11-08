@@ -34,6 +34,23 @@ input, textarea {
     white-space: pre-wrap;
 }
 
+.recipe-card-title {
+    background-color: #FF94A9;
+}
+
+.recipe-card-body {
+    background-color: white;
+    padding-left: 1em;
+    max-height: 18rem;
+    overflow-y: scroll;
+    text-overflow: break-word;
+    white-space: pre-wrap;
+}
+
 .active, .focus {
+    background-color: #a20021;
+}
+
+.market-background {
     background-color: #c96204;
 }

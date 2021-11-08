@@ -10,14 +10,14 @@
             <nav class="nav nav-pills flex-column text-white">
                 <a class="nav-link ms-3 my-1 text-white h4" href="/kitchen#add">New Recipe</a>
                 <a class="nav-link ms-3 my-1 text-white h4" href="/kitchen#view">Your Recipes</a>
-                <a class="nav-link ms-3 my-1 text-white h4" href="/kitchen#profile">Your Profile</a>
+                <!-- <a class="nav-link ms-3 my-1 text-white h4" href="/kitchen#profile">Your Profile</a> -->
                 <a class="nav-link ms-3 text-white h4" href="/market">Marketplace</a>
             </nav>
         </nav>
 
         <div class="container-fluid pt-4" style="margin-left: 220px;">
             <h1 id="welcome">Welcome to your kitchen!</h1>
-            <div class="d-flex flex-column justify-content-between min-vh-100" data-bs-spy="scroll" data-bs-target="#menu" data-bs-offset="0" tabindex="0">
+            <div class="d-flex flex-column justify-content-start min-vh-100" data-bs-spy="scroll" data-bs-target="#menu" data-bs-offset="0" tabindex="0">
                 <div class="h-50 mb-4">
                     <h4 id="add"></h4>
                     <app-add-recipe (recipeEmit)="addItem($event)"></app-add-recipe>
@@ -26,12 +26,16 @@
                     <h4 id="view"></h4>
                     <app-all-recipes-by-chef [newRecipe]="recipe"></app-all-recipes-by-chef>
                 </div>
-                <div class="h-25 mb-2">
+                <!-- <div class="h-25 mb-2">
                     <h4 id="profile"></h4>
                     <div>TODO</div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
     
+    <div class="fixed-bottom mx-4 my-2">
+        <button class="btn btn-light p-2 ml-5" (click)="logout()">Log Out</button>
+    </div>
+
 </div>

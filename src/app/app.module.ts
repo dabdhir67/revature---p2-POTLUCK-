@@ -18,6 +18,7 @@ import { KitchenComponent } from './KitchenView/kitchen/kitchen.component';
 import { MarketComponent } from './MarketView/market/market.component';
 import { AllRecipesComponent } from './MarketView/all-recipes/all-recipes.component';
 import { AllRecipesByChefComponent } from './KitchenView/all-recipes-by-chef/all-recipes-by-chef.component';
+import { RecipeCardComponent } from './MarketView/recipe-card/recipe-card.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AllRecipesByChefComponent } from './KitchenView/all-recipes-by-chef/all
     KitchenComponent,
     MarketComponent,
     AllRecipesComponent,
-    AllRecipesByChefComponent
+    AllRecipesByChefComponent,
+    RecipeCardComponent
   ],
   imports: [
     BrowserModule,

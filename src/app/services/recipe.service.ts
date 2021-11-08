@@ -34,7 +34,7 @@ export class RecipeService {
     }});
   }
 
-  getAllRecipes(){
+  getAllRecipes(): Observable<Recipe[]> {
     return this.httpClient.get<Recipe[]>(this.URL, { headers: {
       "Authorization" : `${sessionStorage.getItem('token')}`,
       "getAll" : "true"}

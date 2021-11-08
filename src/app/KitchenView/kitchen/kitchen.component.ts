@@ -13,6 +13,9 @@ export class KitchenComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if (!(sessionStorage.getItem('token'))) {
+      window.location.href="/login";
+    }
   }
 
   recipe: Recipe = {
@@ -30,5 +33,10 @@ export class KitchenComponent implements OnInit {
 
   addItem(recipe: Recipe) {
     this.recipe = recipe;
+  }
+
+  logout() {
+    sessionStorage.clear();
+    window.location.href = "/login";
   }
 }
